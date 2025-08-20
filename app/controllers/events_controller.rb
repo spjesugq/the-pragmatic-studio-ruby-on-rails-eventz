@@ -39,8 +39,8 @@ class EventsController < ApplicationController
     redirect_to events_url, status: :see_other
   end
 private
-    def event_params
-      params.require(:event)
-        .permit(:name, :description, :location, :price, :starts_at, :capacity, :image_file_name)
-    end
+  def event_params
+    params.require(:event)
+      .permit(:name, :description, :location, :price, :starts_at, :capacity, :image_file_name)
+  end
 end
