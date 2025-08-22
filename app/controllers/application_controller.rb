@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 private
   helper_method :current_user
   helper_method :current_user?
+  helper_method :current_user_admin?
 
   def current_user
     User.find(session[:user_id]) if session[:user_id]
@@ -9,6 +10,10 @@ private
 
   def current_user?(user)
     current_user == user
+  end
+
+  def current_user_admin?
+    current_user && current_user.admin?
   end
 
   def require_signin
@@ -21,5 +26,9 @@ private
   def require_correct_user
     @user = User.find(params[:id])
     redirect_to(events_url) unless current_user?(@user)
+  end
+
+  def require_admin
+    redirect_to(events_url, alert: "Unauthorized access!") unless current_user_admin?
   end
 end
