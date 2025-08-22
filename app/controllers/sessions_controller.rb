@@ -9,4 +9,9 @@ class SessionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to(events_url, status: :see_other, notice: "You're now signed out!")
+  end
 end
