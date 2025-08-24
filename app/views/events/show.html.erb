@@ -21,14 +21,14 @@
     <p>
       <%= @event.description %>
     </p>
+    <div class="register">
+      <%= register_or_sold_out(@event) %>
+      <p>
+        <%= link_to("Who's registered?", event_registrations_path(@event)) %>
+      </p>
+    </div>
   </div>
 
-  <div class="register">
-    <%= register_or_sold_out(@event) %>
-    <p>
-      <%= link_to("Who's registered?", event_registrations_path(@event)) %>
-    </p>
-  </div>
   <aside>
     <% if @likers.present? %>
       <h4>Liked By</h4>
