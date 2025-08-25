@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     resources :registrations
     resources :likes
   end
+  get "events/filter/:filter" => "events#index", as: :filtered_events
 end
